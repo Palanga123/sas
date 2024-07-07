@@ -1,0 +1,21 @@
+/* This will affect the scrollbar globally */
+::-webkit-scrollbar {
+    width: 7px;               /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;       /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cccaca;          /* color of the scroll thumb */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8b8b8b;          /* color of the scroll thumb on hover*/
+}
+
+input{
+    color: black;
+}
