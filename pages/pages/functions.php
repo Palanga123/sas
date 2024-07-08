@@ -119,10 +119,14 @@
 
 
         if ($trunk_query && $trans_query){
+
             $transit_sql = "INSERT INTO `Transit`(depature_town, destination, trunk_id, transporter_id) VALUES('Lusaka', '$destination', '$trunk_id', '$transporter_id')";
             $transit_result = mysqli_query($conn, $transit_sql);
 
+            
+            
             if($transit_result){
+
                 $update_sql = "UPDATE `Transporter` SET status = 'Online' WHERE transporter_id = '$transporter_id'";
                 $update = mysqli_query($conn, $update_sql);
 
@@ -132,9 +136,13 @@
                 if($update && $update_trunk){
                     header("Location: trunk.php?remarks=successful");
                 }
+                
             }else{
                 header("Location: trunk.php?remarks=reg_error");
             }
+
+
+            
         }else{
             header("Location: trunk.php?remarks=user_exists");
         }

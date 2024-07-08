@@ -1,6 +1,6 @@
 <?php
 
-        // if (isset($_POST["id"])) {
+        // Recieve the trunk_id from gps_track.php and use it to query the database and sending a JSON
 
             $id = $_POST["id"];
         
@@ -13,18 +13,19 @@
 
                 $result = mysqli_query($conn, $select);
 
-                $row = mysqli_fetch_assoc($result);
-
-                $latitude = $row['latitude'];
-                $longitude = $row['longitude'];
+                
 
                 if (mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+
+                    $latitude = $row['latitude'];
+                    $longitude = $row['longitude'];
 
                     $data = ["latitude" => $latitude, "longitude"=> $longitude];
                     
                     $json_data = json_encode($data);
                 }else{
-                    $json_data = "{\"latitude\": \"-12.806087840744508\", \"longitude\": \"28.239504844034045\"}";
+                    $json_data = "{}";
                 }
 
                 return $json_data;

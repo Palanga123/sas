@@ -17,8 +17,8 @@
 </head>
 <body class="md:flex bg-gray-200">
     
-    
-    <nav class="hidden md:block w-[250px] rounded-md fixed h-full bg-white border border-gray-300 shadow-md">
+    <!-- Desktop view navbar -->
+    <nav class="hidden md:block w-[225px] rounded-md fixed h-full bg-white border border-gray-300 shadow-md">
 
         <div>
             <p class="py-10 px-10 mb-5 text-gray-700 font-bold text-lg border-b border-gray-300 text-slate-800">
@@ -28,7 +28,7 @@
         
         <div class="px-2">
             <p class="w-full rounded-md text-gray-800 hover:bg-sky-100 mb-2"  id="transporter">
-                <a href="./" class="block py-3 px-10 w-full">
+                <a href="./" class="block py-3 px-5 w-full">
                     <button class="w-10 text-slate-600">
                         <i class="fa-solid fa-users-line px-2"></i>
                     </button>
@@ -36,7 +36,7 @@
                 </a>
             </p>
             <p class="w-full rounded-md text-gray-800 hover:bg-sky-100 mb-2" id="trunks">
-                <a href="./trunk.php" class="block py-3 px-10 w-full">
+                <a href="./trunk.php" class="block py-3 px-5 w-full">
                     <button class="w-10 text-slate-600">
                         <i class="fa-solid fa-box px-2"></i>
                     </button>
@@ -44,7 +44,7 @@
                 </a>
             </p>
             <p class="w-full flex items-center text-gray-800 rounded-md hover:bg-sky-100 mb-2" id="transit">
-                    <a href="transit.php" class="block py-3 px-10 w-full">
+                    <a href="transit.php" class="block py-3 px-5 w-full">
                         <button class="w-10 text-slate-600">
                             <i class="fa-solid fa-truck px-2"></i>
                         </button>
@@ -52,7 +52,7 @@
                     </a>
             </p>
             <p class="w-full flex items-center text-gray-800 rounded-md hover:bg-sky-100 mb-2" id="alerts">
-                <a href="notifications.php" class="block py-3 px-10 w-full">
+                <a href="notifications.php" class="block py-3 px-5 w-full">
                     <button class="w-10 text-slate-600">
                         <i class="fa-solid fa-bell p"></i>
                     </button>
@@ -62,7 +62,7 @@
             
             
             <p class="w-full rounded-md mb-2">
-                <a href="logout.php" class="flex text-gray-800 block py-3 px-10 w-full">
+                <a href="logout.php" class="flex text-gray-800 block py-3 px-5 w-full">
                     <button class="w-10 text-slate-600">
                         <i class="fa-solid fa-arrow-right-from-bracket px-2"></i>
                     </button>
