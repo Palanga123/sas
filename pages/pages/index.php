@@ -98,12 +98,14 @@
                 </div>
                 <div class="h-[350px]">
                     <?php
+                    // Query the database to get transporter information
                         $query = "SELECT * FROM `sas`.`Transporter`";
                         $result = mysqli_query($conn, $query);
                         $transRows = mysqli_num_rows($result);
 
                         if($transRows){
                         
+                            // Iterate throught the rows to make get all transporter details
                             while($row = $result -> fetch_assoc()){
                                 $fname = $row['fname'];
                                 $lname = $row['lname'];
@@ -147,12 +149,15 @@
             </div>
             <div class="overflow-auto scroll-smooth h-[350px]">
                 <?php
+
+                    // Query to get active transporters
                     $active_query = "SELECT * FROM `sas`.`Transporter` WHERE status = 'Online'";
                     $active_result = mysqli_query($conn, $active_query);
                     $num_of_rows = mysqli_num_rows($active_result);
 
                     if($num_of_rows){
                     
+                        // Iterate through the rows 
                         while($active_row = $active_result -> fetch_assoc()){
                             $transporter_id = $active_row['transporter_id'];
                             $active_fname = $active_row['fname'];

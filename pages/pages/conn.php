@@ -1,14 +1,16 @@
 <?php
 
+        $servername = "";
         $username = "root";
         $password = "";
-        $servername = "";
         $dbname = "sas";
 
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Connect to the database using servername, username, password and database name
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-        if (!$conn){
-            die("Connection error: ".mysqli_connect_error());
+        // If connection doesntgo through kill the connection else say connected successfully
+        if ($conn -> connect_error) {
+            die("Connection error: ".$conn -> connect_error);
         }else{
             $secure = "Connected succesfullly";        
         }
