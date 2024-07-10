@@ -84,17 +84,17 @@
                 </div>
             </div>
         </div>
-        <div id="transporters" class="w-full rounded-md shadow-2xl overflow-hidden tabContent">
+        <div id="transporters" class="w-full rounded-md shadow-2xl  tabContent">
             <div class="px-10 py-6">
                 <p class="font-semibold text-2xl text-gray-800">Transporter List</p>
                 <p class="text-sm text-gray-600">List of all registered transporters in the system.</p>
             </div>
             <div class="overflow-auto scroll-smooth">
                 <div class="text-xs flex md:w-full bg-gray-300 md:justify-evenly items-center border-b font-semibold text-[15px] text-gray-800">
-                    <div class="w-40 text-center py-2">Name</div>
-                    <div class="w-40 text-center py-2">NRC No</div>
-                    <div class="w-40 text-center py-2">Phone No</div>
-                    <div class="w-40 text-center py-2">Status</div>
+                    <div class="w-44 text-center py-2">Name</div>
+                    <div class="w-44 text-center py-2">NRC No</div>
+                    <div class="w-44 text-center py-2">Phone No</div>
+                    <div class="w-44 text-center py-2">Status</div>
                 </div>
                 <div class="h-[350px]">
                     <?php
@@ -111,14 +111,14 @@
                                 $nrc = $row['nrc'];
                                 $status = $row['status'];
                     ?>
-                        <div class="text-sm md:text-base flex md:w-full md:justify-evenly items-center border-b border-gray-200 text-[13px] bg-white">
-                            <div class="w-40 border-r py-4"><?php echo "$fname $lname"; ?></div>
-                            <div class="w-40 border-r py-4"><?php echo "$nrc"; ?></div>
-                            <div class="w-40 border-r py-4"><?php echo "$phone"; ?></div>
+                        <div class="md:text-sm flex md:w-full md:justify-evenly border-b border-gray-200 text-[12px] items-center bg-white overflow-auto scroll-smooth">
+                            <div class="w-44 text-center border-r py-4"><?php echo "$fname $lname"; ?></div>
+                            <div class="w-44 text-center border-r py-4"><?php echo "$nrc"; ?></div>
+                            <div class="w-44 text-center border-r py-4"><?php echo "$phone"; ?></div>
                             <?php if($status == "Online"){?>
-                                <div class="w-40 py-4 text-green-600 font-semibold"><?php echo "$status"; ?></div>
+                                <div class="w-44 text-center py-4 text-green-600 font-semibold"><?php echo "$status"; ?></div>
                             <?php }else{?>
-                                <div class="w-40 py-4 text-red-600 font-semibold"><?php echo "$status"; ?></div>
+                                <div class="w-44 text-center py-4 text-red-600 font-semibold"><?php echo "$status"; ?></div>
                             <?php } ?>
                         </div>
                     <?php
@@ -140,10 +140,10 @@
                 <p class="text-sm text-gray-600">List of all transporters on transit.</p>
             </div>
             <div class="flex text-xs md:text-base w-full bg-gray-300 items-center justify-evenly overflow-hidden border-b font-semibold text-[15px] text-gray-800">
-                <div class="w-1/4 px-4 py-2">Name</div>
-                <div class="w-1/4 px-4 py-2">NRC No</div>
-                <div class="w-1/4 px-4 py-2">Phone</div>
-                <div class="w-1/4 px-4 py-2">Details</div>
+                <div class="w-44 text-center md:px-4 py-2">Name</div>
+                <div class="w-44 text-center md:px-4 py-2">NRC No</div>
+                <div class="w-44 text-center md:px-4 py-2">Phone</div>
+                <div class="w-44 text-center md:px-4 py-2">Details</div>
             </div>
             <div class="overflow-auto scroll-smooth h-[350px]">
                 <?php
@@ -160,17 +160,17 @@
                             $active_phone = $active_row['phone'];
                             $active_nrc = $active_row['nrc'];
                 ?>
-                        <div class="flex w-full justify-evenly text-[15px] border-b border-gray-200 text-[13px] bg-white">
-                            <div class="w-1/4 px-4 py-4">
+                        <div class="flex w-full justify-evenly border-b border-gray-200 items-center text-[12px] md:text-sm bg-white">
+                            <div class="w-44 text-center md:px-4 py-4">
                                 <?php echo "$active_fname $active_lname"; ?>
                             </div>
-                            <div class="w-1/4 px-4 py-4">
+                            <div class="w-44 text-center md:px-4 py-4">
                                 <?php echo "$active_nrc"; ?>
                             </div>
-                            <div class="w-1/4 px-4 py-4">
+                            <div class="w-44 text-center md:px-4 py-4">
                                 <?php echo "$active_phone"; ?>
                             </div>
-                            <div class="w-1/4 px-4 py-4">
+                            <div class="w-44 text-center md:px-4 py-4">
                                 <form action="details.php" method="get" class="">
                                     <input type="text" value="<?php  echo $transporter_id;?>" name="id" class="hidden">
                                     <button type="submit" class="text-white text-sm py-2 px-3 rounded-md bg-sky-700 text-right">View</button>

@@ -20,9 +20,12 @@
     <!-- Desktop view navbar -->
     <nav class="hidden md:block w-[225px] rounded-md fixed h-full bg-white border border-gray-300 shadow-md">
 
-        <div>
-            <p class="py-10 px-10 mb-5 text-gray-700 font-bold text-lg border-b border-gray-300 text-slate-800">
+        <div class="border-b border-gray-300 py-10 px-10 mb-5">
+            <p class="text-gray-700 font-bold text-lg  text-slate-800">
                 Secure Alert System - (SAS)
+            </p>
+            <p class="pt-4 text-[12px] font-semibold">
+                <?php echo "$loggedin_fname $loggedin_lname"; ?>
             </p>
         </div>
         

@@ -162,7 +162,7 @@ if ($sqlresult) {
 </body>
 
 <script>
-    window.onload(print());
+    window.onload = print();
 </script>
 
 </html>

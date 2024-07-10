@@ -16,6 +16,11 @@ let id = document.getElementById("user_id").value
 let data = new FormData()
 data.append("id", id)
 
+function stopInterval() {
+    clearInterval(hello)
+}
+
+
 
 // Get map coordinates from the database using the id as a query factor. Response is the coordinates of the trunk in JSON format
 function get() {
@@ -24,13 +29,12 @@ function get() {
             res.json()
         )
         .then(txt => {
-            // console.log(txt)
             if (txt) {
 
                 if (Object.keys(txt).length === 0) {
 
-                    console.log("No gps coordinates found for trunk:", id)
-                    
+                    alert(`No gps coordinates found for trunk Tr-000${id}`)
+                    stopInterval()
 
                 } else {
 
@@ -59,4 +63,4 @@ function get() {
         })
 
 }
-setInterval(get, 5000)
+hello = setInterval(get, 5000)
