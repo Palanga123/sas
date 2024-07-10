@@ -135,7 +135,7 @@ if ($sqlresult) {
                                 $icon = "fa-check-circle";
                                 $color = "text-green-600";
                             }                            
-                            echo $alert_time;
+                            // echo date('Y-m-d H:i:s', $alert_time);
                             $at = strtotime($alert_time);
                             $display = calculateTimeDifference($at);
                         
