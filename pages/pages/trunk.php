@@ -18,7 +18,7 @@
                 <div class="py-5 px-10 text-black">                    
                     <?php
                         if ($remarks == "") {
-                            //dummy datat
+                            //dummy data
                         }
                         if ($remarks == 'success'){
                             echo '<p class="rounded-md px-6 py-3 border border-green-600 bg-green-50 text-green-600 font-semibold">Trunk registered succesfully</p>';
@@ -92,8 +92,8 @@
                             </div>
                             
                             <div class="mr-2">
-                                <p class="text-[15px]">Time to be opened</p>
-                                <input type="datetime-local" name="date_time" id="date_time" class="bg-gray-50 text-sm h-10 pl-4 w-full md:w-80 rounded border border-gray-400">
+                                <p class="text-[15px]">Cargo to be transported:</p>
+                                <input type="text" name="cargo" id="cargo" class="bg-gray-50 text-sm h-10 pl-4 w-full md:w-80 rounded border border-gray-400" placeholder="Cargo to be transported">
                             </div>
                                                 
                         </div>             

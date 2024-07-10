@@ -64,6 +64,7 @@ if ($sqlresult) {
     $trans_result = mysqli_query($conn, $trans_query);
     $trans_row = mysqli_fetch_assoc($trans_result);
     $destination = $trans_row['destination'];
+    $cargo = $trans_row['cargo'];
     $trunk_id = $trans_row['trunk_id'];
 
     $more_query = "SELECT * FROM `sas`.`Trunks` WHERE trunk_id = '$trunk_id'";
@@ -93,7 +94,7 @@ if ($sqlresult) {
     </div>
     <div class="flex justify-between py-2">
         <p class="font-semibold">Cargo: </p>
-        <p>Past papers</p>
+        <p><?php echo $cargo; ?></p>
     </div>
     <div class="flex justify-between py-2">
         <p class="font-semibold">Status: </p>
@@ -134,13 +135,13 @@ if ($sqlresult) {
                                 $icon = "fa-check-circle";
                                 $color = "text-green-600";
                             }                            
-
+                            echo $alert_time;
                             $at = strtotime($alert_time);
                             $display = calculateTimeDifference($at);
                         
                             ?>
 
-    <div class="px-4 py-6 my-2 flex cursor-pointer border border-sky-600 bg-sky-50 rounded-md mx-1 items-center">
+    <div class="px-4 py-6 my-2 mb-4 flex cursor-pointer border border-sky-600 bg-sky-50 rounded-md mx-1 items-center">
         <div class="text-2xl md:text-4xl <?php echo $color; ?> px-2 md:px-6">
             <i class="fa-solid <?php echo $icon; ?>"></i>
         </div>

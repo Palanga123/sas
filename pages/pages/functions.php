@@ -114,13 +114,13 @@
 
 
         $destination = $_POST['destination'];
-        // $time_stamp = $_POST['date_time'];
+        $cargo = $_POST['cargo'];
 
 
 
         if ($trunk_query && $trans_query){
 
-            $transit_sql = "INSERT INTO `Transit`(depature_town, destination, trunk_id, transporter_id) VALUES('Lusaka', '$destination', '$trunk_id', '$transporter_id')";
+            $transit_sql = "INSERT INTO `Transit`(depature_town, destination, cargo, trunk_id, transporter_id) VALUES('Lusaka', '$destination', '$cargo', '$trunk_id', '$transporter_id')";
             $transit_result = mysqli_query($conn, $transit_sql);
 
             
