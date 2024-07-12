@@ -9,8 +9,8 @@
     $user_check = $_SESSION['login_user'];
 
     //Query the database to get users first and last name
-    $ses_sql = mysqli_query($conn, "SELECT admin_id, fname, lname FROM Administrator WHERE email ='$user_check'");
-    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+    $ses_sql = mysqli_query($conn, "SELECT admin_id, fname, lname FROM Adminstrator WHERE email ='$user_check'");
+    $row = mysqli_fetch_assoc($ses_sql);
     
 
     //Assigning the retrieved values to variables

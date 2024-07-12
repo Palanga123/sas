@@ -5,5 +5,6 @@
 
     session_start();
     login();
+    // echo $secure;
 
 ?>

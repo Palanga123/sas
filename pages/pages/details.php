@@ -133,7 +133,7 @@
                     </div>
             
                 </div>
-            </div>
+                    </div>
     </main>
 </body>
     <script src="../JavaScript/header.js"></script>

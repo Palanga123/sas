@@ -31,7 +31,7 @@
                                 echo '<p class="rounded-md px-6 py-3 border border-orange-500 bg-orange-50 text-orange-500 font-semibold">Transporter with that NRC already exists, </p>';
                             }
                             if ($remarks == 'error'){
-                                echo '<p class="rounded-md px-6 py-3 border border-red-600 bg-red-50 text-red-600 font-semibold">Registration error. Try again later!</p>';
+                                echo '<p class="rounded-md px-6 py-3 border border-red-600 bg-red-50 text-red-600 font-semibold">Registration error. Try again </p>';
                             }
                         }
                         

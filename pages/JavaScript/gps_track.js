@@ -22,7 +22,8 @@ function stopInterval() {
 
 
 
-// Get map coordinates from the database using the id as a query factor. Response is the coordinates of the trunk in JSON format
+// Get map coordinates from the database using the id as a query factor. 
+// Response is the coordinates of the trunk in JSON format
 function get() {
     fetch("../pages/gps_track.php", { method: 'post', body: data })
         .then(res =>
@@ -33,7 +34,7 @@ function get() {
 
                 if (Object.keys(txt).length === 0) {
 
-                    alert(`No gps coordinates found for trunk Tr-000${id}`)
+                    alert(`No gps coordinates found for this trunk.`)
                     stopInterval()
 
                 } else {
@@ -63,4 +64,4 @@ function get() {
         })
 
 }
-hello = setInterval(get, 5000)
+hello = setInterval(get, 3000)
