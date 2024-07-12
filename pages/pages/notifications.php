@@ -1,30 +1,8 @@
 <?php
     $title = "Notifications";
     include 'base.php' ;
-
-    function calculateTimeDifference($timestamp) {
-        $currentTime = time();
-        $difference = $currentTime - $timestamp;
-        $new_time = floor($difference / 60);
+    include 'functions.php';
     
-        if ($new_time == 0) {
-            return "Just now";
-        } elseif ($new_time < 60) {
-            return "$new_time minute" . ($new_time > 1 ? 's' : '') . " ago";
-        } elseif ($new_time < 1440) {
-            $hours = floor($new_time / 60);
-            return "$hours hour" . ($hours > 1 ? 's' : '') . " ago";
-        } elseif ($new_time < 43200) {
-            $days = floor($new_time / 1440);
-            return "$days day" . ($days > 1 ? 's' : '') . " ago";
-        } elseif ($new_time < 525600) {
-            $months = floor($new_time / 43200);
-            return "$months month" . ($months > 1 ? 's' : '') . " ago";
-        } else {
-            $years = floor($new_time / 525600);
-            return "$years year" . ($years > 1 ? 's' : '') . " ago";
-        }
-    }
 ?>
     <main class="w-11/12 md:w-3/5 m-auto">
         
@@ -46,20 +24,17 @@
                         $alert_type = $alert_row["alert_type"];
                         $transporter_id = $alert_row["transporter_id"];
                         $alert_msg = $alert_row["alert_msg"];
-                        $alert_time = $alert_row["Time_stamp"];
+                        $alert_time = $alert_row["timestamp"];
 
-                        if($alert_type == "green"){
+                        if($alert_type == "100" || $alert_type == "200"){
                             $icon = "fa-check-circle";
                             $color = "text-green-600";
-                        }else if($alert_type == "red"){
+                        }else if($alert_type == "101" || $alert_type == "201"){
                             $icon = "fa-exclamation-triangle";
                             $color = "text-red-600";
-                        }else if($alert_type == "orange"){
-                            $icon = "fa-exclamation-triangle";
-                            $color = "text-orange-600";
                         }else{
                             $icon = "fa-check-circle";
-                            $color = "text-green-600";
+                            $color = "text-orange-600";
                         }
 
                         $at = strtotime($alert_time);
@@ -72,7 +47,7 @@
                             <div class="flex justify-between w-full">
                                 <div class="px-4 font-semibold"> 
                                     <p><?php echo $alert_msg;?> </p>
-                                    <p class="text-xs text-blue-900 pt-2" id="time"><?php echo $display;?> </p>
+                                    <p class="text-xs text-blue-900 pt-2" id="time"><?php echo "$alert_time --- $display";?> </p>
                                     
                                 </div> 
                                 <form action="details.php" method="get" class="text-right">

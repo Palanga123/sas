@@ -150,3 +150,33 @@ function assign_trunk()
         header("Location: trunk.php?remarks=doesnt_exist");
     }
 }
+
+function calculateTimeDifference($timestamp)
+{
+    // Calculates the difference in time between 
+    // the time of the alert and current time
+
+    // Get current time and subtract it from the parameter being parsed
+    $currentTime = time();
+    $difference = $currentTime - $timestamp;
+    $new_time = floor($difference / 60);
+
+    // Assign the time to check how long ago the event happened in days, months or years
+    if ($new_time == 0) {
+        return "Just now";
+    } elseif ($new_time < 60) {
+        return "$new_time minute" . ($new_time > 1 ? 's' : '') . " ago";
+    } elseif ($new_time < 1440) {
+        $hours = floor($new_time / 60);
+        return "$hours hour" . ($hours > 1 ? 's' : '') . " ago";
+    } elseif ($new_time < 43200) {
+        $days = floor($new_time / 1440);
+        return "$days day" . ($days > 1 ? 's' : '') . " ago";
+    } elseif ($new_time < 525600) {
+        $months = floor($new_time / 43200);
+        return "$months month" . ($months > 1 ? 's' : '') . " ago";
+    } else {
+        $years = floor($new_time / 525600);
+        return "$years year" . ($years > 1 ? 's' : '') . " ago";
+    }
+}
