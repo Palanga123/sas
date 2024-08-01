@@ -1,7 +1,8 @@
-CREATE TABLE `Administrator`(
+CREATE TABLE `Adminstrator`(
     `admin_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `fname` VARCHAR(255) NOT NULL,
     `lname` VARCHAR(255) NOT NULL,
+    `phone` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL
 );
