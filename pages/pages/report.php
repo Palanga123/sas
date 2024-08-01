@@ -89,11 +89,12 @@ if ($sqlresult) {
     </div>
 
     <?php 
-                        
+                        // Query the database to check if there are alerts in the databse
                         $alert_sql = "SELECT * FROM Alerts  WHERE trunk_id='$trunk_id'";
                         $alert_result = mysqli_query($conn, $alert_sql);
                         $rows = mysqli_num_rows($alert_result);
 
+                        // If there are results display them by iterating through each item
                         if($rows > 0) {
 
                         while ($alert_row = mysqli_fetch_assoc($alert_result)){
@@ -101,6 +102,9 @@ if ($sqlresult) {
                             $alert_msg = $alert_row["alert_msg"];
                             $alert_time = $alert_row["timestamp"];
 
+                            // Check what type of alert it is 
+                            // 100 - for vibrations
+                            // 200 - for Light intensity
                             if($alert_type == "100" || $alert_type == "200"){
                                 $icon = "fa-check-circle";
                                 $color = "text-green-600";

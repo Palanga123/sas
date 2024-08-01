@@ -123,6 +123,9 @@ include 'base.php' ?>
         </div>
         <div class="overflow-auto scroll-smooth h-[350px]">
             <?php
+
+            // Query the databse to check if there are trunks that are online
+            // if there are any, display them by iterating through with a while loop
             $query = "SELECT * FROM `sas`.`Trunks` WHERE status = 'Online'";
             $result = mysqli_query($conn, $query);
 

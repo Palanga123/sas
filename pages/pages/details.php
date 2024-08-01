@@ -14,9 +14,9 @@
     <main class="w-11/12 md:w-5/6 mx-auto md:px-10 py-2">    
             <div id="user" class="w-full">
                 <?php
-                    // $sql = "SELECT * FROM `sas`.`Transporter` WHERE transporter_id = '$id'";
-                    // $sqlresult = $conn -> query($sql);
-
+                    
+                    // Display transporter details by getting the id sent by trunks.php
+                    // If there are any results it will display
                     $sql = "SELECT * FROM `sas`.`Transporter` WHERE transporter_id = '$id'";
                     $sqlresult = $conn -> query($sql);
 
