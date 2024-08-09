@@ -8,11 +8,13 @@ CREATE TABLE `Adminstrator`(
 );
 CREATE TABLE `Transit`(
     `transit_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `depature_town` VARCHAR(255) NOT NULL,
+    `depature` VARCHAR(255) NOT NULL,
     `destination` VARCHAR(255) NOT NULL,
+    `cargo` VARCHAR(255) NOT NULL,
     `trunk_id` INT NOT NULL,
     `transporter_id` INT NOT NULL,
-    `datetime` DATETIME NULL
+    `datetime` DATETIME NULL,
+    `state` VARCHAR(255) NOT NULL DEFAULT 'On-transit'
 );
 CREATE TABLE `Trunks`(
     `trunk_id` INT NOT NULL AUTO_INCREMENT,
@@ -31,8 +33,6 @@ CREATE TABLE `Alerts`(
     `alert_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `alert_type` VARCHAR(255) NOT NULL,
     `alert_msg` VARCHAR(255) NOT NULL,
-    `longitude` DECIMAL(6) NOT NULL,
-    `latitude` DECIMAL(6) NOT NULL,
     `Time_stamp` TIMESTAMP(6),
     `trunk_id` INT NOT NULL,
     `transporter_id` INT NOT NULL

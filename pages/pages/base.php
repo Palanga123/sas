@@ -126,6 +126,14 @@
                     Notifications    
                 </a>
             </p>
+            <p class="w-full flex items-center text-gray-800 rounded-md hover:bg-sky-100 mb-2">
+                <a href="about.php" class="block py-3 px-5 w-full">
+                    <button class="w-10 text-slate-600">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                    About    
+                </a>
+            </p>
             
             
             <p class="w-full rounded-md mb-2">

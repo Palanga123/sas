@@ -32,23 +32,30 @@
                         $trunk_id = $trans_row['trunk_id'];
                 ?>
                 <div class="w-full rounded-md shadow-md overflow-hidden bg-white my-5">
-                    <div class="md:flex justify-between text-center p-2 font-semibold text-gray-800">
-                        <div class = "md:w-1/2 px-4 py-4 rounded-md text-left items-center"><i class="fa-solid fa-user-circle pr-2 md:px-4 text-[20px] text-sky-800"></i><?php echo "$sqlfname $sqllname: $destination"; ?></div>
+                    <div class="md:flex justify-evenly text-center p-2 font-semibold text-gray-800 items-center">
+                        <div class = "md:w-1/2 px-2 py-4 rounded-md text-left items-center"><i class="fa-solid fa-user-circle pr-2 md:px-4 text-[20px] text-sky-800"></i><?php echo "$sqlfname $sqllname: $destination"; ?></div>
                         <div class="flex ">
-                            <div class = "px-4 md:px-4 py-2 md:py-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" id="default" onclick="tabing(event, 'map')">Map</div>
-                            <div class = "px-4 md:px-4 py-2 md:py-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" onclick="tabing(event, 'not')">Alerts</div>
-                            <div class = "px-4 md:px-4 py-2 md:py-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50">
+                            <div class = "px-2 md:px-4 py-2 md:py-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" id="default" onclick="tabing(event, 'map')">Map</div>
+                            <div class = "px-2 md:px-4 py-2 md:py-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" onclick="tabing(event, 'not')">Alerts</div>
+                                                    
+                            <div class = "block w-20 text-center px-2 md:px-4 py-2 md:py-2 rounded-md cursor-pointer ml-2 text-white bg-sky-600">
                                 <form action="report.php" method="post">
                                     <input type="text" name="id" value="<?php echo $id ?>" class="hidden">
-                                    <button class="w-full h-full">Report</button>
+                                    <button class="w-full h-full block">Report</button>
                                 </form>
                                 
                             </div>
+                            <div class = "px-2 md:px-4 py-2 hover:bg-red-500 rounded-md cursor-pointer ml-2 bg-red-600 text-white">
+                                <form action="clear.php" method="post">
+                                    <input type="text" name="id" value="<?php echo $id ?>" class="hidden">
+                                    <button class="w-full h-full block">Finish</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class = "hidden md:w-1/6 px-4 py-4 hover:bg-red-500 rounded-md cursor-pointer ml-2 bg-red-600 text-white" onclick="location.href = 'transit.php'">Exit</div>
                     </div>
                 </div>
                 <input id="user_id" value="<?php echo $trunk_id?> " name="id" class="hidden">
+                
                 <div class="w-full h-[500px] overflow-hidden rounded-md mt-8 shadow-2xl">
                     <div id="map" class="tabContent h-full w-full a"></div>
 
@@ -56,7 +63,7 @@
                             
                         <?php 
                         
-                        $alert_sql = "SELECT * FROM Alerts  WHERE trunk_id='$trunk_id'";
+                        $alert_sql = "SELECT * FROM Alerts WHERE trunk_id='$trunk_id'";
                         $alert_result = mysqli_query($conn, $alert_sql);
                         $rows = mysqli_num_rows($alert_result);
 
