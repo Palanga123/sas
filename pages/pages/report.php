@@ -4,7 +4,7 @@
     include 'functions.php';
 
 
-    if(! $id = $_POST["id"]){
+    if(! $transit_id = $_POST["id"]){
         echo "<script>history.back()</script>";
     }else{
 ?>
@@ -31,20 +31,23 @@
 </style>
 
 <?php
-$sql = "SELECT * FROM `sas`.`Transporter` WHERE transporter_id = '$id'";
-$sqlresult = $conn->query($sql);
+$trans_query = "SELECT * FROM `sas`.`Transit` WHERE transit_id = '$transit_id'";
+$trans_result = $conn -> query($trans_query);
 
-if ($sqlresult) {
-    $sqlrow = $sqlresult->fetch_assoc();
-    $sqlfname = $sqlrow['fname'];
-    $sqllname = $sqlrow['lname'];
-
-    $trans_query = "SELECT * FROM `sas`.`Transit` WHERE transporter_id = '$id'";
-    $trans_result = mysqli_query($conn, $trans_query);
-    $trans_row = mysqli_fetch_assoc($trans_result);
+if ($trans_result) {
+    $trans_row = $trans_result -> fetch_assoc();
     $destination = $trans_row['destination'];
     $cargo = $trans_row['cargo'];
     $trunk_id = $trans_row['trunk_id'];
+    $transporter_id = $trans_row['transporter_id'];
+
+    
+    $sql = "SELECT * FROM `sas`.`Transporter` WHERE transporter_id = '$transporter_id'";
+    $sqlresult = $conn->query($sql);
+    $sqlrow = $sqlresult->fetch_assoc();
+    $sqlfname = $sqlrow['fname'];
+    $sqllname = $sqlrow['lname'];
+    
 
     $more_query = "SELECT * FROM `sas`.`Trunks` WHERE trunk_id = '$trunk_id'";
     $more_result = mysqli_query($conn, $more_query);

@@ -119,7 +119,6 @@ include 'base.php' ?>
             <div class="w-1/4 px-4 py-2">Name</div>
             <div class="w-1/4 px-4 py-2">NRC No</div>
             <div class="w-1/4 px-4 py-2">Phone No</div>
-            <div class="w-1/4 px-4 py-2"></div>
         </div>
         <div class="overflow-auto scroll-smooth h-[350px]">
             <?php
@@ -137,21 +136,17 @@ include 'base.php' ?>
                     $trunk_name = $row['trunk_name'];
                     $status = $row['status'];
 
-                    $trans_query = "SELECT transporter_id FROM `sas`.`Transit` WHERE trunk_id = '$trunk_id'";
+                    $trans_query = "SELECT transporter_id, transit_id FROM `sas`.`Transit` WHERE trunk_id = '$trunk_id' ";
                     $trans_result = mysqli_query($conn, $trans_query);
                     $trans_row = mysqli_fetch_assoc($trans_result);
-                    $transporter_id = $trans_row['transporter_id']
+                    $transporter_id = $trans_row['transporter_id'];
+                    $transit_id = $trans_row['transit_id'];
             ?>
                     <div class="flex w-full justify-evenly text-[15px] border-b border-gray-200 text-[13px] bg-white">
                         <div class="w-1/4 px-4 py-4"><?php echo "$trunk_id"; ?></div>
                         <div class="w-1/4 px-4 py-4"><?php echo "$trunk_name"; ?></div>
-                        <div class="w-1/4 px-4 py-4"><?php echo "$status" ?></div>
-                        <div class="w-1/4 px-4 py-4">
-                            <form action="details.php" method="get" class="text-center">
-                                <input type="text" value="<?php echo $transporter_id; ?>" name="id" class="hidden">
-                                <button type="submit" class="text-white text-sm py-2 px-3 rounded-md bg-sky-700">View</button>
-                            </form>
-                        </div>
+                        <div class="w-1/4 px-4 py-4 text-green-400"><?php echo "$status" ?></div>
+                        
                     </div>
             <?php
                 }

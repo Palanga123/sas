@@ -4,7 +4,7 @@
     include 'base.php';
     include 'functions.php';
     
-    if(! $id = $_GET["id"]){
+    if(! $transit_id = $_GET["id"]){
         echo "<script>history.back()</script>";
     }else{
 ?>
@@ -17,37 +17,39 @@
                     
                     // Display transporter details by getting the id sent by trunks.php
                     // If there are any results it will display
-                    $sql = "SELECT * FROM `sas`.`Transporter` WHERE transporter_id = '$id'";
+                    $sql = "SELECT * FROM `Transit` WHERE transit_id = '$transit_id'";
                     $sqlresult = $conn -> query($sql);
 
                     if($sqlresult){
                         $sqlrow = $sqlresult -> fetch_assoc();
-                        $sqlfname = $sqlrow['fname'];
-                        $sqllname = $sqlrow['lname'];
+                        $destination = $sqlrow['destination'];
+                        $trunk_id = $sqlrow['trunk_id'];
+                        $transporter_id = $sqlrow['transporter_id'];
+                        
 
-                        $trans_query = "SELECT * FROM `sas`.`Transit` WHERE transporter_id = '$id'";
+                        $trans_query = "SELECT * FROM `sas`.`Transporter` WHERE transporter_id = '$transporter_id'";
                         $trans_result = mysqli_query($conn, $trans_query);
                         $trans_row = mysqli_fetch_assoc($trans_result);
-                        $destination = $trans_row['destination'];
-                        $trunk_id = $trans_row['trunk_id'];
+                        $transfname = $trans_row['fname'];
+                        $translname = $trans_row['lname'];
                 ?>
                 <div class="w-full rounded-md shadow-md overflow-hidden bg-white my-5">
                     <div class="md:flex justify-evenly text-center p-2 font-semibold text-gray-800 items-center">
-                        <div class = "md:w-1/2 px-2 py-4 rounded-md text-left items-center"><i class="fa-solid fa-user-circle pr-2 md:px-4 text-[20px] text-sky-800"></i><?php echo "$sqlfname $sqllname: $destination"; ?></div>
+                        <div class = "md:w-1/2 px-2 py-4 rounded-md text-left items-center"><i class="fa-solid fa-user-circle pr-2 md:px-4 text-[20px] text-sky-800"></i><?php echo "$transfname $translname: $destination"; ?></div>
                         <div class="flex ">
-                            <div class = "px-2 md:px-4 py-2 md:py-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" id="default" onclick="tabing(event, 'map')">Map</div>
-                            <div class = "px-2 md:px-4 py-2 md:py-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" onclick="tabing(event, 'not')">Alerts</div>
+                            <div class = "p-2 md:p-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" id="default" onclick="tabing(event, 'map')">Map</div>
+                            <div class = "p-2 md:p-4 rounded-md cursor-pointer ml-2 border border-sky-600 bg-sky-50 links" onclick="tabing(event, 'not')">Alerts</div>
                                                     
-                            <div class = "block w-20 text-center px-2 md:px-4 py-2 md:py-2 rounded-md cursor-pointer ml-2 text-white bg-sky-600">
+                            <div class = "block text-center p-2 md:p-4 rounded-md cursor-pointer ml-2 text-white bg-sky-600">
                                 <form action="report.php" method="post">
-                                    <input type="text" name="id" value="<?php echo $id ?>" class="hidden">
+                                    <input type="text" name="id" value="<?php echo $transit_id ?>" class="hidden">
                                     <button class="w-full h-full block">Report</button>
                                 </form>
                                 
                             </div>
-                            <div class = "px-2 md:px-4 py-2 hover:bg-red-500 rounded-md cursor-pointer ml-2 bg-red-600 text-white">
+                            <div class = "p-2 md:p-4 hover:bg-red-500 rounded-md cursor-pointer ml-2 bg-red-600 text-white">
                                 <form action="clear.php" method="post">
-                                    <input type="text" name="id" value="<?php echo $id ?>" class="hidden">
+                                    <input type="text" name="id" value="<?php echo $transit_id ?>" class="hidden">
                                     <button class="w-full h-full block">Finish</button>
                                 </form>
                             </div>

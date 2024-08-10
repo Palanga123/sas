@@ -10,20 +10,20 @@ include 'base.php';
 
     <div class="md:grid grid-cols-3 gap-4 cursor-pointer mt-6 md:mt-12 overflow-auto scroll-smooth m-auto">
         <?php
-        $query = "SELECT * FROM `sas`.`Trunks` WHERE status = 'Online'";
+        $query = "SELECT * FROM `Transit` WHERE state = 'Active'";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
             while ($row = $result -> fetch_assoc()) {
 
-                $trunk_id = $row['trunk_id'];
-                $trunk_name = $row['trunk_name'];
-                $status = $row['status'];
+                $trunk_id = $row['trunk_id'];                
+                $transit_id = $row['transit_id'];
 
-                $trans_query = "SELECT transporter_id, destination FROM `sas`.`Transit` WHERE trunk_id = '$trunk_id'";
+                $trans_query = "SELECT * FROM `Trunks` WHERE trunk_id = '$trunk_id'";
                 $trans_result = mysqli_query($conn, $trans_query);
                 $trans_row = mysqli_fetch_assoc($trans_result);
-                $transporter_id = $trans_row['transporter_id'];
-                $destination = $trans_row['destination'];
+                $trunk_name = $trans_row['trunk_name'];
+                $transporter_id = $row['transporter_id'];
+                $destination = $row['destination'];
 
         ?>
                 <div class="rounded-md border border-gray-300 flex w-full md:w-[300px] items-center p-4 bg-white shadow-md my-2">
@@ -43,7 +43,7 @@ include 'base.php';
                         </div>
                         <div class="text-right">
                             <form action="details.php" method="get" class="text-right">
-                                <input type="text" value="<?php echo $transporter_id; ?>" name="id" class="hidden">
+                                <input type="text" value="<?php echo $transit_id; ?>" name="id" class="hidden">
                                 <button type="submit" class="text-white text-sm py-2 px-3 rounded-md bg-sky-700 text-right">View</button>
                             </form>
                         </div>
