@@ -115,47 +115,51 @@ include 'base.php' ?>
             <p class="font-semibold text-2xl text-gray-800">Trunks List</p>
             <p class="text-sm text-gray-600">List of all trunks on transit</p>
         </div>
-        <div class="flex w-full bg-gray-300 justify-evenly overflow-hidden border-b font-semibold text-[15px] text-gray-800">
-            <div class="w-1/4 px-4 py-2">Name</div>
-            <div class="w-1/4 px-4 py-2">NRC No</div>
-            <div class="w-1/4 px-4 py-2">Phone No</div>
-        </div>
-        <div class="overflow-auto scroll-smooth h-[350px]">
-            <?php
+        <table class="min-w-full margin-auto overflow-auto">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-3 px-6 text-left uppercase">Id</th>
+                    <th class="py-3 px-6 text-left uppercase">Trunk Name</th>
+                    <th class="py-3 px-6 text-left uppercase">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <?php
 
-            // Query the databse to check if there are trunks that are online
-            // if there are any, display them by iterating through with a while loop
-            $query = "SELECT * FROM `sas`.`Trunks` WHERE status = 'Online'";
-            $result = mysqli_query($conn, $query);
+                // Query the databse to check if there are trunks that are online
+                // if there are any, display them by iterating through with a while loop
+                $query = "SELECT * FROM `Trunks` WHERE status = 'Online'";
+                $result = mysqli_query($conn, $query);
 
 
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = $result->fetch_assoc()) {
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = $result->fetch_assoc()) {
 
-                    $trunk_id = $row['trunk_id'];
-                    $trunk_name = $row['trunk_name'];
-                    $status = $row['status'];
+                        $trunk_id = $row['trunk_id'];
+                        $trunk_name = $row['trunk_name'];
+                        $status = $row['status'];
 
-                    $trans_query = "SELECT transporter_id, transit_id FROM `sas`.`Transit` WHERE trunk_id = '$trunk_id' ";
-                    $trans_result = mysqli_query($conn, $trans_query);
-                    $trans_row = mysqli_fetch_assoc($trans_result);
-                    $transporter_id = $trans_row['transporter_id'];
-                    $transit_id = $trans_row['transit_id'];
-            ?>
-                    <div class="flex w-full justify-evenly text-[15px] border-b border-gray-200 text-[13px] bg-white">
-                        <div class="w-1/4 px-4 py-4"><?php echo "$trunk_id"; ?></div>
-                        <div class="w-1/4 px-4 py-4"><?php echo "$trunk_name"; ?></div>
-                        <div class="w-1/4 px-4 py-4 text-green-400"><?php echo "$status" ?></div>
-                        
-                    </div>
-            <?php
+
+                        if ($status == "Online"){
+                            $color = "text-green-600";
+                        }else{
+                            $color = "text-red-600";
+                        }
+                ?>
+                        <tr class="hover:bg-gray-100 h-14">
+                            <td class="py-3 px-6"><?php echo $trunk_id?></td>
+                            <td class="py-3 px-6"><?php echo $trunk_name?></td>
+                            <td class="py-3 px-6 font-semibold <?php echo $color?>"><?php echo $status?></td>
+                        </tr>
+                <?php
+                    }
+                } else {
+                    echo '<p class="py-6 text-center text-gray-800 font-semibold italic">No Active Trunks</p>';
                 }
-            } else {
-                echo '<p class="py-6 text-center text-gray-800 font-semibold italic">No Active Trunks</p>';
-            }
-            ?>
-        </div>
-
+                ?>
+            </tbody>
+        </table>
     </div>
 
 

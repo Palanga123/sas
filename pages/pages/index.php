@@ -1,5 +1,5 @@
 <?php 
-    $title = "Security Alert System"; 
+    $title = "Data Leakage Detection and Prevention System"; 
     include 'base.php';
     
 ?>
@@ -89,51 +89,57 @@
                 <p class="font-semibold text-2xl text-gray-800">Transporter List</p>
                 <p class="text-sm text-gray-600">List of all registered transporters in the system.</p>
             </div>
-            <div class="overflow-auto scroll-smooth">
-                <div class="text-xs flex md:w-full bg-gray-300 md:justify-evenly items-center border-b font-semibold text-[15px] text-gray-800">
-                    <div class="w-44 text-center py-2">Name</div>
-                    <div class="w-44 text-center py-2">NRC No</div>
-                    <div class="w-44 text-center py-2">Phone No</div>
-                    <div class="w-44 text-center py-2">Status</div>
-                </div>
-                <div class="h-[350px]">
+            
+            <table class="min-w-full margin-auto overflow-auto">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="py-3 px-6 text-left uppercase">Name</th>
+                        <th class="py-3 px-6 text-left uppercase">NRC </th>
+                        <th class="py-3 px-6 text-left uppercase">Phone Number</th>
+                        <th class="py-3 px-6 text-left uppercase">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+            
                     <?php
-                    // Query the database to get transporter information
-                        $query = "SELECT * FROM `sas`.`Transporter`";
-                        $result = mysqli_query($conn, $query);
-                        $transRows = mysqli_num_rows($result);
-
-                        if($transRows){
-                        
-                            // Iterate throught the rows to make get all transporter details
-                            while($row = $result -> fetch_assoc()){
-                                $fname = $row['fname'];
-                                $lname = $row['lname'];
-                                $phone = $row['phone'];
-                                $nrc = $row['nrc'];
-                                $status = $row['status'];
-                    ?>
-                        <div class="md:text-sm flex md:w-full md:justify-evenly border-b border-gray-200 text-[12px] items-center bg-white overflow-auto scroll-smooth">
-                            <div class="w-44 text-center border-r py-4"><?php echo "$fname $lname"; ?></div>
-                            <div class="w-44 text-center border-r py-4"><?php echo "$nrc"; ?></div>
-                            <div class="w-44 text-center border-r py-4"><?php echo "$phone"; ?></div>
-                            <?php if($status == "Online"){?>
-                                <div class="w-44 text-center py-4 text-green-600 font-semibold"><?php echo "$status"; ?></div>
-                            <?php }else{?>
-                                <div class="w-44 text-center py-4 text-red-600 font-semibold"><?php echo "$status"; ?></div>
-                            <?php } ?>
-                        </div>
-                    <?php
+    
+                    // Query the databse to check if there are trunks that are online
+                    // if there are any, display them by iterating through with a while loop
+                    $query = "SELECT * FROM `Transporter`";
+                    $result = mysqli_query($conn, $query);
+    
+    
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = $result->fetch_assoc()) {
+    
+                            $fname = $row['fname'];
+                            $lname = $row['lname'];
+                            $nrc = $row['nrc'];
+                            $phone = $row['phone'];
+                            $status = $row['status'];
+    
+                            
+                            if ($status == "Online"){
+                                $color = "text-green-600";
+                            }else{
+                                $color = "text-red-600";
                             }
-                        }else{
                     ?>
-                        <p class="py-6 text-center text-gray-800 font-semibold italic">No Transporters registered</p>
+                            <tr class="hover:bg-gray-100 h-14">
+                                <td class="py-3 px-6"><?php echo "$fname $lname";?></td>
+                                <td class="py-3 px-6"><?php echo $nrc?></td>
+                                <td class="py-3 px-6"><?php echo $phone?></td>
+                                <td class="py-3 px-6 font-semibold <?php echo $color?>"><?php echo $status?></td>
+                            </tr>
                     <?php
-                    
                         }
+                    } else {
+                        echo '<p class="py-6 text-center text-gray-800 font-semibold italic">No Active Trunks</p>';
+                    }
                     ?>
-                </div>
-            </div>
+                </tbody>
+            </table>
+        </div>
         
         </div>
         

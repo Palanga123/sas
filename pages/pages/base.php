@@ -22,7 +22,7 @@
 
         <div class="border-b border-gray-300 py-10 px-10 mb-5">
             <p class="text-gray-700 font-bold text-lg  text-slate-800">
-                Secure Alert System - (SAS)
+                Data Leakage Detection and Prevention System
             </p>
             <p class="pt-4 text-[12px] font-semibold">
                 <?php echo "$loggedin_fname $loggedin_lname"; ?>

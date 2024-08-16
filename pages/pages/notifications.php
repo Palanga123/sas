@@ -1,5 +1,5 @@
 <?php
-    $title = "Notifications";
+    $title = "Alerts";
     include 'base.php' ;
     include 'functions.php';
     
@@ -17,7 +17,7 @@
                 <?php                 
 
                 // Query the database to check if there are alerts in the databse
-                $alert_sql = "SELECT * FROM Alerts WHERE state = 'Unread' ORDER BY alert_id DESC";
+                $alert_sql = "SELECT * FROM Alerts ORDER BY alert_id DESC";
                 $alert_result = mysqli_query($conn, $alert_sql);
                 $rows = mysqli_num_rows($alert_result);
 

@@ -10,7 +10,8 @@ function login()
         $email = $_POST['email'];
         $pass = $_POST['password'];
 
-        $query = "SELECT * FROM Adminstrator WHERE email ='$email' and password='$pass'";
+        $query = "SELECT email, password FROM Adminstrator WHERE email ='$email'";
+        //  and password='$pass'";
 
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_array($result);
@@ -19,11 +20,17 @@ function login()
         $count = mysqli_num_rows($result);
 
         if ($count == 1) {
-            $_SESSION['login_user'] = $email;
-            header("Location: ./");
+            $check_pass = $row['password'];
+            if ($check_pass === $pass){
+                $_SESSION['login_user'] = $email;
+                header("Location: ./");
+            }else{
+                header("Location: ../../?remarks=incorrect");
+            }
         } else {
-            header("Location: ../../");
+            header("Location: ../../?remarks=exist");
         }
+        
     } else {
         $hello = 'hello';
     }
@@ -133,12 +140,15 @@ function assign_trunk()
 
                 $update_sql = "UPDATE `Transporter` SET status = 'Online' WHERE transporter_id = '$transporter_id'";
                 $update = mysqli_query($conn, $update_sql);
-
                 $update_trunk_sql = "UPDATE `Trunks` SET status = 'Online' WHERE trunk_id = '$trunk_id'";
                 $update_trunk = mysqli_query($conn, $update_trunk_sql);
+                $insert_sql = "INSERT INTO `Coordinates`(trunk_id, latitude, longitude) VALUES($trunk_id, 0,0)";
+                $insert_entry = $conn -> query($insert_sql);
 
-                if ($update && $update_trunk) {
+                if ($update && $update_trunk && $insert_entry) {
                     header("Location: trunk.php?remarks=successful");
+                }else{
+                    echo "Hello";
                 }
             } else {
                 header("Location: trunk.php?remarks=reg_error");
